@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "Types.h"
+#include <Types.h>
 
 class Log {
  public:
