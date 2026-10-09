@@ -15,9 +15,9 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <Log.h>
 #include <Types.h>
 #include <Utils.h>
-#include <Log.h>
 #include <iostream>
 
 Log::LogLevel Log::s_log_level = Log::LogLevel::Debug;
