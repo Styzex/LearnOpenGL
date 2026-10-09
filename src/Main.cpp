@@ -23,7 +23,8 @@
 constexpr int window_width = 1280;
 constexpr int window_height = 720;
 
-static void framebuffer_size_callback(GLFWwindow* window_, int width_, int height_) {
+static void framebuffer_size_callback(GLFWwindow* window_, int width_,
+                                      int height_) {
   glViewport(0, 0, width_, height_);
 }
 
@@ -48,8 +49,10 @@ int main(void) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  
-  GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Window", NULL, NULL);
+
+  GLFWwindow* window =
+      glfwCreateWindow(window_width, window_height, "Window", NULL, NULL);
+
   if (window == NULL) {
     Logger.Error("Failed to create OpenGL window context");
     glfwTerminate();
@@ -66,7 +69,10 @@ int main(void) {
     return -1;
   }
 
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  // Sets the framebufferSizeCallback so that our window doesn't change it's defined size
+  glfwSetFramebufferSizeCallback(
+      window, framebuffer_size_callback);  // Sets the framebufferSizeCallback
+                                           // so that our window doesn't change
+                                           // it's defined size
 
   Logger.Info(getOpenGLVersion());  // Log OpenGL version of the window
 
@@ -76,8 +82,10 @@ int main(void) {
     glfwSwapBuffers(window);
     glfwPollEvents();
 
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);  // Specifies the Color used by OpenGL to clear the buffer
-    glClear(GL_COLOR_BUFFER_BIT);  // Clears the buffer with the specified color by glClearColor
+    // Specifies the Color used by OpenGL to clear the buffer
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    // Clears the buffer with the specified color by glClearColor
+    glClear(GL_COLOR_BUFFER_BIT);
   }
 
   glfwTerminate();

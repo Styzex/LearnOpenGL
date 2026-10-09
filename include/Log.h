@@ -21,7 +21,7 @@
 
 class Log {
  public:
-  enum class LogLevel{
+  enum class LogLevel {
     Debug = 0,
     Info = 1,
     Error = 2,
@@ -36,8 +36,8 @@ class Log {
   int m_debug_id;
 
  public:
-  explicit Log(const String context_);  // Constructor
-  static void SetAppID(const String app_id_);  // App ID initializer
+  explicit Log(const String context_);           // Constructor
+  static void SetAppID(const String app_id_);    // App ID initializer
   static void SetLogLevel(LogLevel log_level_);  // Log level initializer
   void Info(String message_);
   void Error(String message_);
