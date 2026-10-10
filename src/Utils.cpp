@@ -15,8 +15,8 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <Types.h>
-#include <Utils.h>
+#include <LearnOpenGL/Types.h>
+#include <LearnOpenGL/Utils.h>
 
 String StringToUpper(const String& str_) {
   String return_string;

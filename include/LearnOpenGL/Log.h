@@ -17,6 +17,29 @@
 
 #pragma once
 
-#include <Types.h>
+#include <LearnOpenGL/Types.h>
 
-String StringToUpper(const String& str_);
+class Log {
+ public:
+  enum class LogLevel {
+    Debug = 0,
+    Info = 1,
+    Error = 2,
+  };
+
+ private:
+  static Log::LogLevel s_log_level;
+  static String s_app_id;
+  String m_gl_context;
+  int m_id;
+  int m_error_id;
+  int m_debug_id;
+
+ public:
+  explicit Log(const String context_);           // Constructor
+  static void SetAppID(const String app_id_);    // App ID initializer
+  static void SetLogLevel(LogLevel log_level_);  // Log level initializer
+  void Info(String message_);
+  void Error(String message_);
+  void Debug(String message_);
+};

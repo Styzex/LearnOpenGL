@@ -17,11 +17,11 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <Log.h>
-#include <Types.h>
+#include <LearnOpenGL/Log.h>
+#include <LearnOpenGL/Types.h>
 
-constexpr int window_width = 1280;
-constexpr int window_height = 720;
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
 
 static void framebuffer_size_callback(GLFWwindow* window_, int width_,
                                       int height_) {
@@ -40,7 +40,7 @@ static String getOpenGLVersion() {
   return "Using OpenGL version " + ver;
 }
 
-int main(void) {
+int main() {
   Log::SetAppID("LearnOpenGL");
   Log::SetLogLevel(Log::LogLevel::Debug);
   Log Logger("Main");
@@ -51,7 +51,7 @@ int main(void) {
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   GLFWwindow* window =
-      glfwCreateWindow(window_width, window_height, "Window", NULL, NULL);
+      glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Window", NULL, NULL);
 
   if (window == NULL) {
     Logger.Error("Failed to create OpenGL window context");
@@ -74,6 +74,7 @@ int main(void) {
                                            // so that our window doesn't change
                                            // it's defined size
 
+  Logger.Debug("Hello World");
   Logger.Info(getOpenGLVersion());  // Log OpenGL version of the window
 
   // Render loop
