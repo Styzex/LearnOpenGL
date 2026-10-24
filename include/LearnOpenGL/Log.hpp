@@ -17,7 +17,9 @@
 
 #pragma once
 
-#include <LearnOpenGL/Types.h>
+#include <LearnOpenGL/Types.hpp>
+
+namespace Engine {
 
 class Log {
  public:
@@ -41,5 +43,8 @@ class Log {
   static void SetLogLevel(LogLevel log_level_);  // Log level initializer
   void Info(String message_);
   void Error(String message_);
+  void Error(String message_, String custom_id_);
   void Debug(String message_);
 };
+
+}  // namespace Engine

@@ -15,11 +15,13 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <LearnOpenGL/Log.h>
-#include <LearnOpenGL/Types.h>
-#include <LearnOpenGL/Utils.h>
+#include <LearnOpenGL/Log.hpp>
+#include <LearnOpenGL/Types.hpp>
+#include <LearnOpenGL/Utils.hpp>
 
 #include <iostream>
+
+namespace Engine {
 
 Log::LogLevel Log::s_log_level = Log::LogLevel::Debug;
 String Log::s_app_id = "App";
@@ -37,18 +39,30 @@ void Log::Info(String message_ = "") {
               << "[INFO]"
               << "[" << StringToUpper(m_gl_context) << "]"
               << "[" << m_id << "]"
-              << ": " << message_ << std::endl;
+              << ": " << message_ << "\n";
     m_id++;
   }
 }
 
 void Log::Error(String message_) {
   if (LogLevel::Error >= s_log_level) {
-    std::cout << "[" << s_app_id << "]"
+    std::cerr << "[" << s_app_id << "]"
               << "[ERROR]"
               << "[" << StringToUpper(m_gl_context) << "]"
               << "[" << m_error_id << "]"
-              << ": " << message_ << std::endl;
+              << ": " << message_ << "\n";
+    m_error_id++;
+  }
+}
+
+void Log::Error(String message_, String custom_id_) {
+  if (LogLevel::Error >= s_log_level) {
+    std::cerr << "[" << s_app_id << "]"
+              << "[ERROR]"
+              << "[" << StringToUpper(m_gl_context) << "]"
+              << "[" << m_error_id << "]"
+              << "[" << custom_id_ << "]"
+              << ": " << message_ << "\n";
     m_error_id++;
   }
 }
@@ -59,7 +73,8 @@ void Log::Debug(String message_) {
               << "[DEBUG]"
               << "[" << StringToUpper(m_gl_context) << "]"
               << "[" << m_debug_id << "]"
-              << ": " << message_ << std::endl;
+              << ": " << message_ << "\n";
     m_debug_id++;
   }
 }
+}  // namespace Engine

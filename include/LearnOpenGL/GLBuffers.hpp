@@ -17,6 +17,41 @@
 
 #pragma once
 
-#include <string>
+#include <glad/glad.h>
 
-typedef std::string String;
+class VBO {
+ private:
+  GLuint m_Id;
+  void Delete();
+
+ public:
+  VBO(GLfloat* vertices_, GLsizeiptr size);
+  ~VBO();
+  void Bind();
+  void UnBind();
+};
+
+class VAO {
+ private:
+  GLuint m_Id;
+  void Delete();
+
+ public:
+  VAO();
+  ~VAO();
+  void LinkVBO(VBO& VBO_, GLuint layout);
+  void Bind();
+  void UnBind();
+};
+
+class EBO {
+ private:
+  GLuint m_Id;
+  void Delete();
+
+ public:
+  EBO(GLuint* indices_, GLsizeiptr size_);
+  ~EBO();
+  void Bind();
+  void UnBind();
+};

@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 ")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-add_compile_options("-Wall" "-Wextra" "-pedantic")
+add_compile_options("-Wall" "-Wextra" "-pedantic" "-fno-omit-frame-pointer")
 
 # Source files
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")

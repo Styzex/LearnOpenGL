@@ -15,8 +15,11 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <LearnOpenGL/Types.h>
-#include <LearnOpenGL/Utils.h>
+#include <glad/glad.h>
+
+#include <LearnOpenGL/Log.hpp>
+#include <LearnOpenGL/Types.hpp>
+#include <LearnOpenGL/Utils.hpp>
 
 String StringToUpper(const String& str_) {
   String return_string;
@@ -25,3 +28,31 @@ String StringToUpper(const String& str_) {
   }
   return return_string;
 }
+
+namespace OpenGL {
+Engine::Log Logger("OpenGL");
+
+static std::string ToHex(GLuint value) {
+  const char* digits = "0123456789abcdef";
+  std::string out;
+  do {
+    out.insert(out.begin(), digits[value & 0xF]);
+    value >>= 4;
+  } while (value != 0);
+  return "0x" + out;
+}
+
+void GLAPIENTRY DebugCallback(GLenum source, GLenum type, GLuint id,
+                              GLenum severity, GLsizei length,
+                              const GLchar* message, const void* userParam) {
+  // Skip pure notifications (very noisy)
+  if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) return;
+
+  std::string text =
+      (length < 0 ? std::string(message) : std::string(message, length));
+
+  String err_code = ToHex(id);
+
+  Logger.Error(text, err_code);
+}
+}  // namespace OpenGL
